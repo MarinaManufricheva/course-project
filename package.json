@@ -1,0 +1,21 @@
+{
+  "name": "course-project",
+  "version": "1.0.0",
+  "description": "Application for course project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:scripts": "webpack",
+    "postinstall": "npm run build:scripts && npm run build:styles"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarinaManufricheva/course-project.git"
+  },
+  "author": "Marina Manufricheva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarinaManufricheva/course-project/issues"
+  },
+  "homepage": "https://github.com/MarinaManufricheva/course-project#readme"
+}
