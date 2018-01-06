@@ -6,19 +6,27 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:scripts": "webpack",
-    "postinstall": "npm run build:scripts && npm run build:styles"
+    "postinstall": "npm run build:scripts"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MarinaManufricheva/course-project.git"
   },
   "author": "Marina Manufricheva",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/MarinaManufricheva/course-project/issues"
   },
   "homepage": "https://github.com/MarinaManufricheva/course-project#readme",
   "dependencies": {
-    "express": "^4.16.2"
+    "@types/node": "^8.5.5",
+    "express": "^4.16.2",
+    "postcss-calc": "^6.0.1",
+    "ts-loader": "^3.2.0",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2"
+  },
+  "devDependencies": {
+    "webpack": "^3.10.0"
   }
 }
