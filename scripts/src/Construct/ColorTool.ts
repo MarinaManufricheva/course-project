@@ -3,10 +3,10 @@
  * 
  * @module
  */
-//;
-//
+;
+
 /**
- * Панель инструментов
+ * Цвет 
  */
 	
 function main(id: string): string
