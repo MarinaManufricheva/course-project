@@ -3,16 +3,11 @@
  */
 ;
 
-
 import initSaveButton from './initSaveButton';
-
-import initButton from './initButton';
 
 import SVGFileElements from './SVGFileElements';
 
-import initResetButton from './initResetButton';
-
-import ColorTool from './colorTool';
+import initSaveButtonPNG from './initSaveButtonPNG';
 
 /**
  * Инициализия инструментов изменения файла
@@ -24,7 +19,8 @@ function main( ): void
 	initstartElements();
 	initChangeSVG( 'block', svgDocument);
     initSave();
-    initReset (svgDocument);
+	initReset (svgDocument);
+	initSavePNG();
 }
 
 /**
@@ -37,6 +33,15 @@ let previousElementFormNail: HTMLInputElement;
  */
 let previousElementDesignNail: HTMLInputElement;
 
+/**
+ * Цвет лака
+ */
+let colorNail = <HTMLInputElement>document.getElementById("nail-color");
+
+/**
+ * Цвет рисунка
+ */
+let colorDesign = <HTMLInputElement>document.getElementById("design-color");
 /**
  * Форма по умолчанию
  */
@@ -67,8 +72,7 @@ function initstartElements( ): void
  */
 function initChangeSVG( button: string, svgDocument: SVGFileElements) : void
 {
-	const input = document.getElementsByClassName( button ) as NodeListOf<Element>;
-
+	const input = document.getElementById( button ) as HTMLElement;
 	const onChecked = ( event: Event ): void => 
 	{	
 		if ( event == undefined )
@@ -80,7 +84,6 @@ function initChangeSVG( button: string, svgDocument: SVGFileElements) : void
 		{
 			return;
 		}
-		console.log (target.name);
 		switch (target.name)
 		{
 			case 'nail-form': // если это кнопка по изменению формы, тогда
@@ -95,11 +98,10 @@ function initChangeSVG( button: string, svgDocument: SVGFileElements) : void
 				svgDocument.DisplayLayer( previousElementDesignNail.id);
 				break;
 		}
-		svgDocument.changeColorLayer(previousElementFormNail.id, ColorTool('nail-color')); //если поменялся цвет лака/сменилась форма 
-		svgDocument.changeColorLayer(previousElementDesignNail.id, ColorTool('design-color')); //если поменялся цвет рисунка/сменилась форма
-        console.log (previousElementFormNail.id);
+		svgDocument.changeColorLayer(previousElementFormNail.id, colorNail.value); //если поменялся цвет лака/сменилась форма 
+		svgDocument.changeColorLayer(previousElementDesignNail.id, colorDesign.value); //если поменялся цвет рисунка/сменилась форма
     }
-	initButton( input[0], onChecked );
+	input.addEventListener( 'change', onChecked );
 }
 
 /**
@@ -112,18 +114,19 @@ function initChangeSVG( button: string, svgDocument: SVGFileElements) : void
 function initReset(svgDocument: SVGFileElements) : void
 {
 	const button = document.getElementById('reset') as HTMLButtonElement;
-    const onReset = ( event: Event ): void => 
+    const onReset = (): void => 
 	{	
-        if (event == undefined) {
-            return;
-        }
+        if ( !button )
+		{
+			return;
+		}
         svgDocument.HiddenLayer(previousElementDesignNail.id);
         svgDocument.HiddenLayer(previousElementFormNail.id);
         svgDocument.DisplayLayer(formNailDefault.id);
         svgDocument.changeColorLayer(formNailDefault.id, colorDefault);
         previousElementFormNail = formNailDefault; 
     };
-	initResetButton( button, onReset );
+	button.addEventListener( 'click', onReset );
 }
 
 
@@ -143,7 +146,7 @@ function initSave( ): void
 	const onSave = ( save: ( link: string ) => void ): void =>
 	{
 		const link = getSVGFileLinkFromElement( 'hand-canvas' );
-		window.requestAnimationFrame( // используется для синхронизации анимации
+		window.requestAnimationFrame( // используется для синхронизации 
 			() =>
 				window.requestAnimationFrame(
 					() =>
@@ -183,7 +186,16 @@ function getSVGFileLinkFromElement( id: string ): string
 	return link;
 }
 
-
+/**
+ * Инициализация функции сохранения холста в png
+ * 
+ * @returns
+ */
+function initSavePNG( ): void
+{	
+	const apng = document.getElementById( 'save-png' ) as HTMLAnchorElement;
+	initSaveButtonPNG(apng);
+} 
 
 /**
  * Модуль

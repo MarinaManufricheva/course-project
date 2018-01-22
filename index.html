@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manicure constructor</title>
-    <link rel="stylesheet" type="text/css" href="style/index.css"/>
+	<link rel="stylesheet" type="text/css" href="style/index.css"/>
 </head>
 <body>
     <header>
@@ -13,7 +13,7 @@
     <main>
 		<aside class="wrapper">
 			<form name="tool">
-				<div class="block">
+				<div id="block">
         			<h2>Шаг 1: выбери форму ногтей</h2>
 					<div class="button">
 						<input type="radio" id="nail-form1" class="radio" name="nail-form" checked="checked"/>
@@ -69,17 +69,18 @@
 			</form>
 		</aside>
 		<div class="svg">	
-            <svg version="1.1" class="hand-canvas" id= "hand-canvas" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			<div>
+            <svg version="1.1" class="hand-canvas" id= "hand-canvas" height = "450" width = "450" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 300 300" style="enable-background:new 0 0 300 300;" xml:space="preserve">
 <style type="text/css">
 	.st0{display:none;}
 	.st1{fill:#F8C8AC;}
 	.st2{fill:#F29B7D;}
 	.st3{opacity:0.37;fill:#F39B7D;}
-    /* .st4{fill:#FCEFEB;stroke:#E5BDB3;stroke-width:0.5;stroke-miterlimit:10;} */
-    .st5{opacity:0.1;}
+    .st4{opacity:0.1;}
+	.st5{fill:#FCEFEB;stroke:#E5BDB3;stroke-width:0.5;stroke-miterlimit:10;}
 </style>
-<g id="shadows" class="st5">
+<g id="shadows" class="st4">
 	<path class="st1" d="M185.8,300l-31-24c0,0-19.6-15.4-26.1-21.2c-2.2-1.9-7.2-6.8-9.6-8.5c-6-4.1-19.7-9.4-26-13
 		c-1.1-0.6-3.2-1.5-4.3-2.2c-3.2-1.9-12.1-5.3-14.1-6.6c-1.1-0.7-4.8-3.2-5.6-4.9c-0.7-1.4-0.2-5,0.7-6.4c1-1.6,4.3-3.7,6-4.4
 		c1.8-0.7,5-1.1,6.9-1.3c3.1-0.2,12.5,0.9,12.5,0.9s8.2,0.8,10.9,1.4c2.7,0.6,8.1,2.6,10.7,3.7c2.3,1,9,4.3,9,4.3s11.6,7,15.7,9
@@ -616,9 +617,14 @@
 	c0.1,0,0.4,0.1,0.6,0.1c0.2,0,0.6-0.1,0.7-0.2c0.1-0.1,0.4-0.3,0.3-0.6C286.5,95.3,285,94,284,94.3z"/>
 </g>
 </svg>
-		<a class="save" id="save" role="button">Сохранить</a>
-	  </div>      
+</div>
+<div>
+			<a class="save" id="save" role="button">Сохранить в svg</a>
+			<a class="save" id="save-png">Сохранить в png </a>
+		</div>
+	</div>
+	<canvas width="450" height="450"></canvas>
     </main>
-    <script src="scripts/build/main.js"></script>
+	<script src="scripts/build/main.js"></script>
 </body>
 </html>

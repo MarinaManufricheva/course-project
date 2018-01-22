@@ -78,6 +78,7 @@ class SVGFileElements
 	 */	
 	public changeColorLayer( id: string , color: string ): void
 	{
+
 		const layer = this.svgDocument.children.namedItem(id ) as HTMLElement;
 		if ( layer == null )
 		{

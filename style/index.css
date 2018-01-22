@@ -4,10 +4,10 @@ html {
 }
 body
 {
-    font: 16px/24px "Open Sans",Tahoma,Arial, sans-serif;
+    font: 16px/24px Arial, Tahoma, "Open Sans",sans-serif;
     margin: auto;
     width: 1280px;
-    background: url("../image/and1.gif");
+    /* background: url("../image/and1.gif"); */
     color: #020116
 }
 
@@ -41,7 +41,7 @@ h2
 .hand-canvas
 {
     outline-style: double;
-    width: 450px;
+    /* width: 450px; */
     margin-bottom: 10px;
 }
 
@@ -61,7 +61,7 @@ form
     border-radius: 50px; 
     width: 60px;
     background-color: white;
-    border:  1px solid black;
+    /* border:  1px solid black; */
     box-shadow: 1px 0 5px rgba(0, 0, 0, 0.6);
 }
 .button-image-design
@@ -69,7 +69,7 @@ form
     border-radius: 50px; 
     width: 25px;
     background-color: white;
-    border:  1px solid black;
+    /* border:  1px solid black; */
     box-shadow: 1px 0 5px rgba(0, 0, 0, 0.6);
 }
 
@@ -95,15 +95,17 @@ form
 }
 .save
 {
-    display: block;
-    padding: 0 0.5em;
+    display: inline;
+    padding: 5px;
     line-height: 1.6;
     text-decoration: none;
     color: #090841;
     border-radius: 3px;
     box-shadow: 1px 0 2px rgba(0, 0, 0, 0.6);
-    width: 80px;
+    /* width: 140px; */
     margin: auto;
+    margin-left: 40px;
+    margin-right: 50px;
     text-align: center;
     background: #ffffff;
 }
@@ -111,3 +113,13 @@ input:checked + label
 {
     outline-style: double;
 }
+
+canvas, #js-save
+{
+display: none;
+}
+
+#save-png {
+cursor: pointer;
+}
+
