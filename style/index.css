@@ -67,11 +67,12 @@ form
 .button-image-design
 {
     border-radius: 50px; 
-    width: 25px;
+    width: 30px;
     background-color: white;
     /* border:  1px solid black; */
     box-shadow: 1px 0 5px rgba(0, 0, 0, 0.6);
 }
+
 
 .radio
 {
@@ -122,4 +123,3 @@ display: none;
 #save-png {
 cursor: pointer;
 }
-
