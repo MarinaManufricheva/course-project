@@ -2,11 +2,23 @@
  * Инициализация кнопки сохранения в png
  * @module
  */
+;
 
-  function main( apng: HTMLAnchorElement): void
+/**
+ * Инициализация кнопки сохранения холста в png
+ * 
+ * @param pngHref Ссылка сохранения
+ * @returns
+ */
+
+  function main(pngHref: HTMLAnchorElement): void
   {
-	  const onClick = (): void =>
-	  {
+	if (!pngHref)
+	{
+		return;
+	}
+	const onClick = (): void =>
+	{
 			let svg = document.getElementById('hand-canvas') as HTMLElement;
 			const svghtml = svg.innerHTML as string;// html код svg элемента со всеми  слоями <g>
 			let elementg = svg.getElementsByTagName('g') as NodeListOf<Element>;//коллекция элементов "g" HTMLCollection [ <g#shadows.st5>, <g#nail1>, <g>,  ещё 25… ]
@@ -28,6 +40,7 @@
 				context.drawImage(image, 0, 0);
 				let canvasdata = canvas.toDataURL("image/png");
 				let a = document.createElement("a");
+				document.body.appendChild(a);
 				a.textContent = "save";
 				a.download = "manicure.png";
 				a.href = canvasdata;
@@ -36,7 +49,7 @@
 				a.click();
 			}
 		}
-	apng.addEventListener('click', onClick );
+		pngHref.addEventListener('click', onClick );
 }
 
 /**

@@ -15,12 +15,13 @@ import initSaveButtonPNG from './initSaveButtonPNG';
 function main( ): void
 {
 	const svgDocument = new SVGFileElements( 'hand-canvas' );
-	
-	initstartElements();
-	initChangeSVG( 'block', svgDocument);
-    initSave();
+	const button = document.getElementById( 'save' ) as HTMLAnchorElement;
+	const pngHref = document.getElementById( 'save-png' ) as HTMLAnchorElement;
+	initstartElements ();
+	initChangeSVG ('block', svgDocument);
+    initSaveButton (button);
 	initReset (svgDocument);
-	initSavePNG();
+	initSaveButtonPNG (pngHref);
 }
 
 /**
@@ -128,74 +129,6 @@ function initReset(svgDocument: SVGFileElements) : void
     };
 	button.addEventListener( 'click', onReset );
 }
-
-
-/**
- * Инициализация функции сохранения холста
- * 
- * @returns
- */
-function initSave( ): void
-{
-	const button = document.getElementById( 'save' ) as HTMLAnchorElement;
-	if ( !button )
-	{
-		return;
-	}
-	const link = getSVGFileLinkFromElement( 'hand-canvas' );
-	const onSave = ( save: ( link: string ) => void ): void =>
-	{
-		const link = getSVGFileLinkFromElement( 'hand-canvas' );
-		window.requestAnimationFrame( // используется для синхронизации 
-			() =>
-				window.requestAnimationFrame(
-					() =>
-					{
-						save( link );
-					}
-				)
-		);
-	};
-	initSaveButton(
-		button, 
-		link, 
-		onSave);
-}
-
-/**
- * Формирование ссылки на сохранение svg-файла
- * 
- * @param id Id svg-элемента 
- * @returns Ссылка на скачивание
- */
-function getSVGFileLinkFromElement( id: string ): string
-{
-	const svg = document.getElementById( id ) as Node;
-	const serializer = new XMLSerializer(); //сериализация объекта
-	let source = serializer.serializeToString(svg); //Возвращает сериализованное дерево или ветку в виде строки
-	if ( !source.match( /^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/ ) ) //Используется для сопоставления строке регулярного выражения.
-	{
-		source = source.replace( /^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"' );
-	}
-	if ( !source.match( /^<svg[^>]+"http\:\/\/www\.w3\.org\/1999\/xlink"/ ) )
-	{
-		source = source.replace( /^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"' );
-	}
-	source = '<?xml version="1.0" standalone="no"?>\r\n' + source;
-	const link = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent( source ); //Метод encodeURIComponent заменяет все символы, кроме:	символов латинского алфавита, десятичных цифр и - _ . ! ~ * ' ( ).
-	return link;
-}
-
-/**
- * Инициализация функции сохранения холста в png
- * 
- * @returns
- */
-function initSavePNG( ): void
-{	
-	const apng = document.getElementById( 'save-png' ) as HTMLAnchorElement;
-	initSaveButtonPNG(apng);
-} 
 
 /**
  * Модуль
